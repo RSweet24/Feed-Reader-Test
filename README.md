@@ -4,7 +4,6 @@ This is a web-based application that reads RSS feeds. And includes a number of t
 
 
 ### How to run the this locally
-**Option-1 - Simple**:
 - Click "Clone in Desktop" / "Download ZIP"
 - Open the folder
 - Open `index.html` on your preferred browser
