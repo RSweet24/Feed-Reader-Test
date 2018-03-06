@@ -87,7 +87,7 @@ $(function () {
     });
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function () {
-        
+
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -95,20 +95,36 @@ $(function () {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         beforeEach((done) => {
-            setTimeout(function(){
+            loadFeed(0, function () {
                 done();
-            }, 3000);
+            });
         });
-        it('test Feeds', function(){
-            var test = $('.feed')[0].childElementCount;
-            expect(test).not.toEqual(0);
+        it('Test loadFeed function', function () {
+            var feedContent = $('.feed')[0].childElementCount;
+            expect(feedContent).not.toEqual(0);
         });
     });
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function () {
 
-    /* TODO: Write a test that ensures when a new feed is loaded
-     * by the loadFeed function that the content actually changes.
-     * Remember, loadFeed() is asynchronous.
-     */
+        /* TODO: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
+        var initialFeed;
+        beforeEach((done) => {
+            loadFeed(0, function () {
+                initialFeed = $('.feed')[0].innerHTML;
+            });
+            loadFeed(1, function () {
+                done();
+            });
+        });
+        it('Changes when loading content', function (done) {
+            var nextFeed = $('.feed')[0].innerHTML;
+            expect(initialFeed).not.toEqual(nextFeed);
+            done();
+        });
 
+    });
 }());
