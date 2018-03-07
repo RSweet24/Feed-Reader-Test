@@ -96,10 +96,11 @@ $(function () {
         beforeEach((done) => {
             loadFeed(0, function () {
                 initialFeed = $('.feed')[0].innerHTML;
+                loadFeed(1, function () {
+                    done();
+                });
             });
-            loadFeed(1, function () {
-                done();
-            });
+
         });
         it('Changes when loading content', function (done) {
             var nextFeed = $('.feed')[0].innerHTML;
