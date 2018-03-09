@@ -32,7 +32,7 @@ $(function () {
          * and that the name is not empty.
          */
         allFeeds.forEach(function (feedName) {
-            it('url defined', function () {
+            it('name defined', function () {
                 expect(feedName.name).toBeDefined();
                 expect(feedName.name).not.toBe("");
             });
@@ -56,17 +56,14 @@ $(function () {
         function clickMenu() {
             $('i').click();
         }
-        it('Check if menu is displaying when clicked', function () {
-            clickMenu();
-            var menuClass = $('body')[0].className;
-            expect(menuClass).toEqual('');
-        });
-
-        it('Check if menu is hiding when clicked again', function () {
-            clickMenu();
-            var menuClass = $('body')[0].className;
-            expect(menuClass).toEqual('menu-hidden');
-        });
+         it('Check if menu is displaying when clicked', function () {
+             clickMenu();
+            var menuClass = $('body').hasClass('menu-hidden');
+             expect(menuClass).toEqual(false);
+             clickMenu();
+             var menuClass = $('body').hasClass('menu-hidden');
+             expect(menuClass).toEqual(true);
+         });
     });
 
     /* New Test Suite to test the AJAX call for the initial entries */
@@ -82,7 +79,7 @@ $(function () {
             });
         });
         it('Test loadFeed function', function () {
-            var feedContent = $('.feed')[0].childElementCount;
+            var feedContent = $('.feed .entry').length;
             expect(feedContent).not.toEqual(0);
         });
     });
