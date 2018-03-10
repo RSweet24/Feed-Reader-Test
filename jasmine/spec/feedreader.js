@@ -53,15 +53,16 @@ $(function () {
         /* This test ensures the menu changes
          * visibility when the menu icon is clicked.
          */
+        var menuClass;
         function clickMenu() {
             $('i').click();
         }
          it('Check if menu is displaying when clicked', function () {
              clickMenu();
-            var menuClass = $('body').hasClass('menu-hidden');
+            menuClass = $('body').hasClass('menu-hidden');
              expect(menuClass).toEqual(false);
              clickMenu();
-             var menuClass = $('body').hasClass('menu-hidden');
+             menuClass = $('body').hasClass('menu-hidden');
              expect(menuClass).toEqual(true);
          });
     });
